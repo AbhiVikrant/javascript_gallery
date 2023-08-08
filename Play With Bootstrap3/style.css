@@ -1,0 +1,29 @@
+
+
+.parallax {
+      /* The image used */
+      background-image: url('https://ninjasfiles.s3.amazonaws.com/asset_0000000000000020_1549743985_macbook_mouse.jpg');
+
+      /* Full height */
+       height: 100%;
+
+      /* Create the parallax scrolling effect */
+      background-attachment: fixed;
+      background-position:center;
+      background-repeat: no-repeat;
+      background-size:cover;
+}
+
+.bg-body {
+      background-color: #3a3636 !important;
+}
+
+.text-body {
+      color: #c5ccd3 !important;
+}
+
+.header_1 {
+
+      max-width: 1044px;
+      min-height: 140px;
+}

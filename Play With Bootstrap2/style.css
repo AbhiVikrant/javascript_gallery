@@ -1,0 +1,10 @@
+.imgage_div {
+  background-repeat: no-repeat;
+  object-fit: fill;
+  border: 5px solid red;
+  width: 100%;
+  height: 100%;
+}
+p{
+  text-align: justify;
+}
