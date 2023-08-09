@@ -1,0 +1,6 @@
+var div=React.createElement(
+  "div",
+  { className: "parentDiv", id: "parentDiv" },
+  React.createElement("h1", {className: "h1", children:"JSX is nothing but it is javascript with xml. We need a compiler to convert jsx into javascript and we called Babel "}, ),React.createElement("code", {className: "code", children:" const element = <h1>Hello, world!</h1>; "},  ),React.createElement("p",{className:"p", children: "This funny tag syntax is neither a string nor HTML.It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript.JSX produces React elements. We use JSX because unlike putting markup and logic in separate fil;es, React separates the concerns with loosely coupled units called components that contains the both. We can put any valid javaScript expression easily inside the curly braces in JSX. And JSX is more closer to JavaScript than to HTML and that's why we use camelcasing like class becomes className.JSX prevents injection attacks and represents objects. After compilation, JSX expressions become regular javaScript function calls and evaluates to javaScript objects."}),
+);
+ReactDOM.createRoot(document.getElementById('root')).render(div);
