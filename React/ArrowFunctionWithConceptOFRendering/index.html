@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Arrow Function</title>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+      <div id="root"></div>
+      <script type="text/babel">
+            const Intro = () => {
+                  return (
+                        <>
+                              <h1>This is all about arrow functions and how to render more than one component using side by side and empty fragments</h1>
+                              <strong>Arrow Function:</strong>
+                              <p>An arrow function expression is a complete alternative to a traditional function expression with some semantic differences and deliberate limitations in usage:
+                                    <ul>
+                                          <li>Arrow function doesn't have their own binding to <strong>This</strong>, <strong>Super</strong>, and <strong>arguments</strong> and also cannot be used as methods.</li>
+                                          <li>Arrow functions cannot be used as <strong>Constructors</strong>, Calling with new keyword throws syntax error. They also don't have access to new.target keyword.</li>
+                                          <li>Arrow function can implicity means auto return or explicity means using return.</li>
+                                    </ul></p>
+
+
+                        </>
+                  )
+            }
+            const MoreSection = () => {
+                  return (
+                        <>
+                              <h2>More about Arrow Functions and Super, This</h2>
+                              <hr />
+                              <strong>Binding:</strong>
+                              <p>It means the association of an identifier with a value. In most of the cases in Arrow functions,the value of this depends on how it is called, that is runtime binding. In non-strict mode, the value of this is mostly object.</p>
+                              <p><strong>Super:</strong> keyword is used to access properties of an objects or class [[prototype]] or invoke a superClass or Constructors.</p>
+
+                              <p>More than One components rendered using Empty React Fragments</p>
+                        </>
+                  )
+            }
+            const App = () => <>
+                  <p> Hi, I am Abhishek!</p></>;
+            ReactDOM.createRoot(document.getElementById('root')).render(<><App />,<Intro />, <MoreSection />,</>);
+      </script>
+</body>
+
+</html>
