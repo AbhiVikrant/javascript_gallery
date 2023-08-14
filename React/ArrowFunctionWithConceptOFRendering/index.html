@@ -29,19 +29,19 @@
                         </>
                   )
             }
-            const MoreSection = () => {
-                  return (
-                        <>
-                              <h2>More about Arrow Functions and Super, This</h2>
-                              <hr />
-                              <strong>Binding:</strong>
-                              <p>It means the association of an identifier with a value. In most of the cases in Arrow functions,the value of this depends on how it is called, that is runtime binding. In non-strict mode, the value of this is mostly object.</p>
-                              <p><strong>Super:</strong> keyword is used to access properties of an objects or class [[prototype]] or invoke a superClass or Constructors.</p>
+            const MoreSection = () =>
 
-                              <p>More than One components rendered using Empty React Fragments</p>
-                        </>
-                  )
-            }
+                  <>
+                        <h2>More about Arrow Functions and Super, This</h2>
+                        <hr />
+                        <strong>Binding:</strong>
+                        <p>It means the association of an identifier with a value. In most of the cases in Arrow functions,the value of this depends on how it is called, that is runtime binding. In non-strict mode, the value of this is mostly object.</p>
+                        <p><strong>Super:</strong> keyword is used to access properties of an objects or class [[prototype]] or invoke a superClass or Constructors.</p>
+
+                        <p>More than One components rendered using Empty React Fragments</p>
+                  </>;
+
+
             const App = () => <>
                   <p> Hi, I am Abhishek!</p></>;
             ReactDOM.createRoot(document.getElementById('root')).render(<><App />,<Intro />, <MoreSection />,</>);
