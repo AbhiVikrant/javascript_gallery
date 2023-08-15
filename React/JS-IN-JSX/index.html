@@ -20,15 +20,16 @@
                   const age = 18;
                   const hobby = "JavaScript";
                   const isMarried = false;
-
+                  function sum() {
+                        return 20 + 30;
+                  }
                   return (
                         <>
-
-                              <h1>Demo's basic info:</h1>
-                              <p>My age is{age}</p>
+                              <h1>{name}'s basic info: </h1>
+                              <p>My age is {age}.</p>
                               <p>I like {hobby} a lot!</p>
-                              <p>Am I married?: {isMarried.toString()}</p>
-
+                              <p>Am i married?: {isMarried.toString()}</p>
+                              <p>Sum is {sum()}</p>
                         </>
                   );
             };
