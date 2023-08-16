@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+      <title>How to render the elements of an array in unordered list in JSX?</title>
+
+</head>
+
+<body>
+      <div id="root"></div>
+
+      <script type="text/babel">
+            const numbers = ['BMW', 'Audi', 'Kia', 'Volvo'];
+
+
+
+            const App = () => {
+
+                  return (
+                        <>
+                              <h1>How to render the elements of an array in unordered list in JSX?</h1>
+                              <h2>List of cars:</h2>
+                              <ul>
+                                    {numbers.map((num) => <li><h3>{num}</h3></li>)}
+                              </ul>
+
+                        </>
+                  );
+            };
+
+            const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+            rootElement.render(<App />);
+      </script>
+
+</body>
+
+</html>
