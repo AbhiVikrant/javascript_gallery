@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Conditional Rendering in React</title>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+      <div id="root"></div>
+      <script type="text/babel">
+            const InventrySale = () => {
+                  const itemsSold = [
+                        { id: 1, name: "iPhone 14", price: 1200, qty: 22 },
+                        { id: 2, name: "iPad Pro", price: 800, qty: 18 },
+                        { id: 3, name: "Macbook Air", price: 1500, qty: 7 },
+                        { id: 4, name: "Samsung S23", price: 1100, qty: 16 },
+                        { id: 5, name: "Dell Inspiron 5590", price: 1200, qty: 5 }
+                  ];
+                  const initialValue = 0;
+                  const rev = itemsSold.reduce((accumulator, currentValue) => accumulator + currentValue.price, initialValue);
+                  <style>{`
+                                         .customers{ border-collapse: collapse;
+
+                                    }
+                                    .customers,td,th{
+                                     border: solid black 2px;
+                                    }
+                                         .customers tr:nth-child(even){background-color: #f2f2f2;}
+
+                                         .customers tr:hover {background-color: blue;}
+
+                                   .customers th {
+                                       padding-top: 12px;
+                                       padding-bottom: 12px;
+                                      text-align: left;
+                                            background-color: #04AA6D;
+                                       color: white;
+                                     }
+                                   `}</style>
+
+                  return (
+                        <>
+                              <h1>Record of sold items</h1>
+                              <table border="1px" className="customers">
+
+                                    <thead>
+                                          <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Selling Price</th>
+                                                <th>Quantity</th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          {itemsSold.map((item, index) => (
+
+                                                <tr key={index}>
+                                                      <td>{item.id}</td>
+                                                      <td>{item.name}</td>
+                                                      <td>{item.price}</td>
+                                                      <td>{item.qty}</td>
+                                                </tr>
+                                          )
+                                          )
+                                          }
+                                    </tbody>
+                                    <tfoot>
+                                          <tr>
+                                                <td>Total Revenue</td>
+                                                <td colSpan={3}>${rev}</td>
+                                          </tr>
+                                    </tfoot>
+                              </table>
+                        </>
+                  );
+            };
+
+            const StudentDetails = () => {
+                  const students = [{
+                        name: 'Abhishek', age: 24, marks: 498
+                  }, { name: 'Abhinav', age: 22, marks: 474 }, { name: 'Sunny', age: 21, marks: 345 }];
+                  return (
+                        <>
+                              <style>{`
+                                         .customers{ border-collapse: collapse;
+
+                                    }
+                                    .customers,td,th{
+                                     border: solid black 2px;
+                                    }
+                                         .customers tr:nth-child(even){background-color: #f2f2f2;}
+
+                                         .customers tr:hover {background-color: blue;}
+
+                                   .customers th {
+                                       padding-top: 12px;
+                                       padding-bottom: 12px;
+                                      text-align: left;
+                                            background-color: #04AA6D;
+                                       color: white;
+                                     }
+                                   `}</style>
+                              <table className="customers">
+                                    <caption style={{ color: "red" }}><h1>Student details in table form:</h1></caption>
+                                    <thead>
+                                          <tr>
+
+                                                <th>Student's Name</th>
+                                                <th>Student's Age</th>
+                                                <th>Marks</th>
+
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+
+                                          {students.map((student, index) => (
+
+                                                <tr key={index} style={{ color: "red" }}>
+                                                      <td>{student.name}</td>
+                                                      <td>{student.age}</td>
+                                                      <td>{student.marks}</td>
+                                                </tr>
+
+
+                                          )
+
+                                          )}
+
+                                    </tbody>
+                              </table>
+                        </>
+
+                  )
+            }
+            const CarDetailsWithImage = () => {
+                  const cars = [{ name: 'BMW', model: 'BMW x5', year: '2023', owner: 'Surbhi', img: "https://www.freepnglogos.com/uploads/bmw-brands-logo-image-1.png" },
+                  { name: 'Volvo', model: 'Volvo XC90', year: '2022', owner: 'Abhishek', img: "https://www.freepnglogos.com/uploads/volvo-car-logo-png-brand-image-20.png" },
+                  { name: 'Chery', model: 'C90 4x4', year: '2024', owner: 'Anku', img: "https://www.freepnglogos.com/uploads/chery-logo-hd-png-31.png" },
+                  { name: 'Toyota', model: 'Helix 4x4', year: '2027', owner: 'Abhishek Kumar Vikrant', img: "https://www.freepnglogos.com/uploads/toyota-logo-png/vehicle-toyota-auto-styling-6.png" },
+                  ];
+
+                  return (
+                        <>
+                              <style>{`
+                                         .customers{ border-collapse: collapse;
+
+                                    }
+                                    .customers,td,th{
+                                     border: solid black 2px;
+                                    }
+                                         .customers tr:nth-child(even){background-color: #f2f2f2;}
+
+                                         .customers tr:hover {background-color: blue;}
+
+                                   .customers th {
+                                       padding-top: 12px;
+                                       padding-bottom: 12px;
+                                      text-align: left;
+                                            background-color: #04AA6D;
+                                       color: white;
+                                     }
+                                   `}</style>
+
+                              <h1>Car Details with Owner Name</h1>
+                              <table className="customers">
+                                    <thead>
+                                          <tr>
+                                                <th>Brand's Logo</th>
+                                                <th>Car's Brand Name</th>
+                                                <th>Model Name</th>
+                                                <th>Year of Manufacturing</th>
+                                                <th>Owner's Name</th>
+
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          {
+                                                cars.map((car, index) => (
+                                                      <tr key={index}>
+                                                            <td><img src={car.img} height={50} width={50} /> </td>
+                                                            <td>{car.name}</td>
+                                                            <td>{car.model}</td>
+                                                            <td>{car.year}</td>
+                                                            <td>{car.owner}</td>
+                                                      </tr>
+                                                ))
+                                          }
+
+                                    </tbody>
+                                    <tfoot>
+                                          <tr>
+                                                <td colSpan={2}>These are the basics details.</td>
+                                                <td colSpan={2}> The Owner has its own parking.</td>
+                                          </tr>
+                                    </tfoot>
+                              </table>
+                        </>
+                  )
+            }
+
+            const App = () => {
+                  var a = false;
+                  const handleClick = event => {
+                        if (event.currentTarget.id) {
+                              a = true;
+                        }
+                  };
+                  console.log(a);
+
+                  function getRandomIntInclusive(min, max) {
+                        min = Math.ceil(min);
+                        max = Math.floor(max);
+                        return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+                  }
+                  let show = getRandomIntInclusive(-10, 10);
+                  console.log(show);
+                  // return (
+
+
+                  //       <>
+                  //             <style>
+                  //                   {
+                  //                         `
+                  //                   .btn{
+                  //                         margin:10px;
+                  //                         background-color: blue;
+                  //                         color: white;
+                  //                   }
+                  //                         `
+                  //                   }
+                  //             </style>
+                  //             <h1>Conditional Rendering of Components</h1>
+                  //             <div className="parentDiv">
+                  //                   <button type="button" id="btn_one" className="btn" onClick={handleClick}>Component 1</button>
+                  //                   <button type="button" id="btn_two" className="btn"  >Component 2</button>
+                  //                   <button type="button" id="btn_three" className="btn"  >Component 3</button>
+                  //             </div>
+
+
+
+
+
+                  //       </>
+                  // )
+                  if (show < 0 && show >= -10) {
+                        return (
+                              <>
+                                    <h1>Conditional Rendering of Components</h1>
+                                    <InventrySale />
+                              </>
+                        )
+                  }
+                  else if (show >= 0 && show <= 5) {
+                        return (
+                              <>
+                                    <h1>Conditional Rendering of Components</h1>
+                                    <CarDetailsWithImage />
+                              </>
+                        )
+                  }
+                  else {
+                        return (
+                              <>
+                                    <h1>Conditional Rendering of Components</h1>
+                                    <StudentDetails />
+                              </>
+                        )
+                  }
+            }
+            ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+      </script>
+</body>
+
+</html>
