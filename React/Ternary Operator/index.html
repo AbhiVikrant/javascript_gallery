@@ -49,10 +49,18 @@
 
             const App = () => {
                   // create variable here
-                  var loggedIn = false;
+                  var loggedIn = true;
+                  const user = {
+                        firstName: "",
+                        lastName: "Vikrant"
+                  }
                   return (
                         <>
-                              {loggedIn ? <Home /> : <Login />}
+                              {loggedIn ? (<Home />) : (<Login />)}
+                              {loggedIn && <h1>Welcome {user.firstName == 'Abhishek' ? 'Abhishek' : 'Vikrant'}!</h1>}
+                              <h2>It can be used to render a component based on the condition.
+                                    It returns the first falsy value in the expression
+                                    It returns the last truthy value in the expression</h2>
                         </>
                   )
 
