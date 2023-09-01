@@ -31,6 +31,12 @@
       <div id="root"></div>
 
       <script type="text/babel">
+            var loginStatus = true;
+            const user = {
+                  firstName: "Abhishek",
+                  secondName: "Vikrant"
+
+            }
             const IMAGES = [
                   "https://res.cloudinary.com/dl26pbek4/image/upload/v1674557549/assets/yannis-zaugg--7TB_r-NuMo-unsplash_tdmglm.jpg",
                   "https://res.cloudinary.com/dl26pbek4/image/upload/v1674557550/assets/lino-C2SzUyg3PPQ-unsplash_s8a4tg.jpg",
@@ -58,37 +64,24 @@
                         ))}
                   </div>
             );
-
+            const BuyPremium = () => (
+                  <div>
+                        <button type="button"> Buy Premium</button>
+                  </div>
+            );
+            const Header = () => (
+                  loginStatus ? <h1>Hello {user.firstName} {user.secondName}!</h1> : <h1>Hello Guest!</h1>
+            );
             // create premium account component here
 
             const App = () => {
 
                   // create login status and name variable here
-                  var loginStatus = true;
-                  const user = {
-                        firstName: "Abhishek",
-                        secondName: "Vikrant"
-
-                  }
-
-
-                  if (loginStatus == false) {
-                        return (
-                              <>
-                                    <h1>Hello Guest!</h1>
-                                    <Login />
-                              </>
-                        )
-                  }
-                  else {
-                        return (
-                              <>
-                                    <h1>Hello {user.firstName} {user.secondName}!</h1>
-                                    <button type="button">Buy Premium</button>
-                                    <Home />
-                              </>
-                        )
-                  }
+                  return (
+                        <>
+                              {loginStatus ? <>< Header /> <BuyPremium /> <Home /> </> : <>< Header /> <Login /></>}
+                        </>
+                  )
             };
 
             const rootElement = ReactDOM.createRoot(document.getElementById("root"));
