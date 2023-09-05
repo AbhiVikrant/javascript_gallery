@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>React Document</title>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+      <div id="root"></div>
+      <script type="text/babel">
+            var score = 0;
+            const handleAdd = (inc) => {
+                  score += inc;
+                  console.log(score);
+                  root.render(<App />);
+
+
+            }
+            const handleGreet = () => {
+                  console.log("hey!!");
+                  root.render(<App />);
+            }
+            const App = () => (
+                  <>
+                        <h2>{score}</h2>
+                        <button onClick={() => handleAdd(4)}>Add 4</button>
+                        <button onClick={handleGreet}>Button Handle Greet</button>
+
+                  </>
+            )
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<App />);
+
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+      <title>React App</title>
+</head>
+
+
+<body>
+      <div id="root"></div>
+
+      <script type="text/babel">
+
+            const setShow = () => {
+                  if (document.getElementById('paragraph').style.display == "block") {
+                        document.getElementById('paragraph').style.display = "none";
+                        rootElement.render(<App />);
+                  }
+                  else {
+                        document.getElementById('paragraph').style.display = "block"
+                        rootElement.render(<App />);
+                  }
+            };
+
+            const App = () => (
+
+                  <>
+                        <h1>Coding Ninjas</h1>
+                        <button onClick={setShow}>Show Element Below</button>
+                        <p id="paragraph" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo eius quod ducimus, natus impedit soluta dolorum magnam minus quibusdam quisquam, fugiat esse assumenda consequatur quam deleniti odit! Tempora, voluptate dolore?</p>
+                  </>
+            );
+
+            const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+            rootElement.render(<App />);
+      </script>
+</body>
+
+</html>
