@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+      <title>React App</title>
+      <style>
+            .card {
+                  width: 60%;
+                  padding: 20px;
+                  border-radius: 20px;
+                  margin: 50px auto;
+                  background-color: rgb(236, 236, 236);
+                  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            }
+
+            .inputs {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  width: 60%;
+                  margin: 0 auto;
+            }
+
+            input {
+                  height: 32px;
+            }
+
+            h1 {
+                  font-weight: bolder;
+                  padding: 10px;
+                  color: blueviolet;
+            }
+
+            .author {
+                  font-size: medium;
+                  font-weight: bold;
+                  float: right;
+
+            }
+      </style>
+</head>
+
+<body>
+      <div id="root"></div>
+
+      <script type="text/babel">
+            // Create handlers to increase and decrease vehicle count here
+            let name = '', quote = '';
+            let name_input_ref = React.createRef();
+            let quote_input_ref = React.createRef();
+            let quoteCollection = [];
+            function onKeyPressHandler(event) {
+                  let key = event.key;
+                  name = name_input_ref.current.value;
+                  quote = quote_input_ref.current.value;
+                  // console.log(typeof (key))
+                  if (key === 'Enter') {
+                        quoteCollection.unshift({ author: name, quote: quote });
+
+                        rootElement.render(<>    <App />  </>)
+                  }
+
+            }
+
+            const InputFields = () => (
+                  <>
+                        <h1>Quatify</h1>
+                        <div className="inputs">
+                              <input type="text" placeholder="Name" ref={name_input_ref} onKeyPress={() => onKeyPressHandler(event)} />
+                              <input type="text" placeholder="Quote" ref={quote_input_ref} onKeyPress={() => onKeyPressHandler(event)} />
+                        </div>
+                  </>
+            );
+
+            const App = () => (
+                  <>
+                        <div className="app">
+                              <InputFields />
+                              <div className="card">
+
+                                    {quoteCollection.map((item, index) => (
+                                          <>
+                                                <p key={index}>{item.quote}</p>
+                                                <p key={index} className="author">-{item.author}</p>
+                                                <br />
+                                          </>
+                                    ))}
+
+
+
+
+                              </div></div>
+
+
+
+                  </>
+            );
+
+            const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+            rootElement.render(<App />);
+      </script>
+</body>
+
+</html>

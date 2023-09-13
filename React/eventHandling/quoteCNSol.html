@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <title>React App</title>
+      <style>
+            h2 {
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 2.5rem;
+                  letter-spacing: 1.5px;
+                  color: rgb(120, 0, 255);
+            }
+
+            .App>div:nth-of-type(1),
+            .quotes {
+                  width: 60%;
+                  margin: 0 auto;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+            }
+
+            input {
+                  outline: none;
+                  border: 1px solid #000;
+                  padding: 5px;
+                  padding-left: 10px;
+                  font-size: 1.1rem;
+            }
+
+            .quotes {
+                  margin-top: 30px;
+                  gap: 15px;
+            }
+
+            .quotes div {
+                  display: flex;
+                  flex-direction: column;
+                  padding: 10px;
+                  border-radius: 10px;
+                  background-color: rgb(238, 238, 238);
+                  cursor: pointer;
+                  transition: 0.3s;
+            }
+
+            .quotes div:hover {
+                  transform: scale(1.1);
+                  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+
+            i,
+            b {
+                  font-size: 1.1rem;
+            }
+
+            b {
+                  align-self: flex-end;
+            }
+      </style>
+</head>
+
+<body>
+      <div id="root"></div>
+
+      <script type="text/babel">
+            const quotes = [];
+            const nameRef = React.createRef();
+            const quoteRef = React.createRef();
+
+            const clearInputs = () => {
+                  nameRef.current.value = "";
+                  quoteRef.current.value = "";
+            };
+
+            const handleQuote = (e) => {
+                  const name = nameRef.current.value;
+                  const quote = quoteRef.current.value;
+
+                  if (!name || !quote) return;
+                  if (e.key !== "Enter") return;
+                  quotes.unshift({ name, quote });
+                  clearInputs();
+                  rootElement.render(<App />);
+            };
+
+            const App = () => (
+                  <div className="App">
+                        <h2>Quotify</h2>
+                        <div>
+                              <input ref={nameRef} placeholder="Name" />
+                              <input
+                                    ref={quoteRef}
+                                    placeholder="Quote"
+                                    onKeyPress={handleQuote}
+                              />
+                        </div>
+                        <div className="quotes">
+                              {quotes.map((q, i) => (
+                                    <div key={i}>
+                                          <i>"{q.quote}"</i>
+                                          <b>~ {q.name}</b>
+                                    </div>
+                              ))}
+                        </div>
+                  </div>
+            );
+
+            const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+            rootElement.render(<App />);
+      </script>
+</body>
+
+</html>
