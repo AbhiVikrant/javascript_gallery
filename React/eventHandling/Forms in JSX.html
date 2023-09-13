@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+      <title>React App</title>
+</head>
+
+<body>
+      <div id="root"></div>
+
+      <script type="text/babel">
+            let name_input_ref = React.createRef();
+            let marks_input_ref = React.createRef();
+            var name = '';
+            var marks = '';
+            var object = [
+
+            ]
+            function handleSubmit() {
+                  event.preventDefault();
+                  name = (name_input_ref.current.value);
+                  marks = (marks_input_ref.current.value);
+                  object.push({ name: name, marks: marks });
+                  console.log(object);
+                  rootElement.render(<><Form /><Result /></>);
+            }
+            const Form = () => <>
+                  <form onSubmit={handleSubmit}>
+                        <h1>Student's form</h1>
+                        <div className="inputField">
+                              <span><input type="text" placeholder="Name" ref={name_input_ref} /></span>
+                              <span><input type="number" placeholder="Marks" ref={marks_input_ref} /></span>
+                              <span><button type="submit">Submit</button></span>
+
+                        </div>
+
+                  </form>
+            </>;
+
+            const Result = () => <>
+                  <br />
+                  <div><table border="1px">
+                        <thead>
+                              <tr>
+                                    <th>Student's name</th>
+                                    <th>Marks</th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                              {object.map((item, index) => (
+                                    <tr key={index}>
+                                          <td>{item.name}</td>
+                                          <td>{item.marks}</td>
+                                    </tr>
+                              ))}
+
+
+
+                        </tbody>
+                  </table></div>
+            </>;
+
+            const App = () => (
+                  <>
+                        <Form />
+                        <Result />
+                  </>
+            );
+
+            const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+            rootElement.render(<App />);
+      </script>
+</body>
+
+</html>
