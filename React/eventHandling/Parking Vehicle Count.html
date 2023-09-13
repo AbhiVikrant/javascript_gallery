@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+      <title>React App</title>
+</head>
+
+<body>
+      <div id="root"></div>
+
+      <script type="text/babel">
+            // Create handlers to increase and decrease vehicle count here
+            var car = 0, bike = 0, scooty = 0, bicycle = 0;
+            function handleButtonIncrease(props) {
+                  props === 'car' ? car++ : props === 'bike' ? bike++ : props === 'scooty' ? scooty++ : props === 'bicycle' ? bicycle++ : null;
+                  rootElement.render(<App />);
+
+            }
+            function handleButtonDecrease(props) {
+                  props === 'car' && car > 0 ? car-- : props === 'bike'  && bike>0? bike-- : props === 'scooty' && scooty>0? scooty-- : props === 'bicycle' && bicycle>0? bicycle-- : null;
+                  rootElement.render(<App />);
+
+            }
+
+
+            const App = () => (
+                  <>
+                        <p>List of all the vehicles count in the parking.</p>
+                        <ol>
+                              <li>
+                                    <p>
+                                          <b>Car:{car} </b> &emsp;
+                                          <button onClick={() => handleButtonIncrease('car')}>Increase</button>&emsp;
+                                          <button onClick={() => handleButtonDecrease('car')}>Decrease</button>
+                                    </p>
+                              </li>
+                              <li>
+                                    <p>
+                                          <b>Bike:{bike} </b> &emsp;
+                                          <button onClick={() => handleButtonIncrease('bike')}>Increase</button>&emsp;
+                                          <button onClick={() => handleButtonDecrease('bike')}>Decrease</button>
+                                    </p>
+                              </li>
+                              <li>
+                                    <p>
+                                          <b>Scooty:{scooty} </b> &emsp;
+                                          <button onClick={() => handleButtonIncrease('scooty')}>Increase</button>&emsp;
+                                          <button onClick={() => handleButtonDecrease('scooty')}>Decrease</button>
+                                    </p>
+                              </li>
+                              <li>
+                                    <p>
+                                          <b>Bicycle:{bicycle}</b> &emsp;
+                                          <button onClick={() => handleButtonIncrease('bicycle')}>Increase</button>&emsp;
+                                          <button onClick={() => handleButtonDecrease('bicycle')}>Decrease</button>
+                                    </p>
+                              </li>
+                        </ol>
+                  </>
+            );
+
+            const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+            rootElement.render(<App />);
+      </script>
+</body>
+
+</html>
