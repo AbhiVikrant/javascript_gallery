@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <title>React App</title>
+      <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+      <div id="root"></div>
+
+      <script type="text/babel">
+            let customers = [];
+            const capacity = 25;
+            let seatsLeft = 25;
+            let guestCount = 0;
+            let checkout = "-";
+            const guestCountRef = React.createRef();
+            const guestNameRef = React.createRef();
+            const guestMobileRef = React.createRef();
+            let status = 'Click to CheckOut';
+            const clearInputs = () => {
+                  guestCountRef.current.value = "";
+                  guestNameRef.current.value = "";
+                  guestMobileRef.current.value = "";
+
+            };
+            // Create form submit handler here
+            function handlerSubmit(e) {
+                  e.preventDefault();
+
+                  const guestName = guestNameRef.current.value;
+                  guestCount = guestCountRef.current.value;
+                  const guestMob = guestMobileRef.current.value;
+                  if (!guestName || !guestCount || !guestMob || guestCount == 0) return;
+                  if (guestCount > capacity) {
+                        alert("Check available seats");
+                        return;
+                  }
+
+
+                  var today = new Date();
+                  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                  var dateTime = date + ' ' + time;
+                  let checkIn = dateTime;
+
+                  if (seatsLeft - guestCount >= 0) {
+
+                        seatsLeft -= guestCount;
+                        customers.unshift({ guestCount, guestName, guestMob, checkIn, checkout, status });
+
+                  }
+                  else {
+                        alert("Check available seats");
+                        return;
+                  }
+                  clearInputs();
+                  // console.log(customers);
+                  rootElement.render(<App />);
+            };
+            function handleDelete(props) {
+                  let table = document.querySelector("tbody");
+                  let child = document.getElementById(props);
+
+                  let vv = parseInt(customers[props]['guestCount'], 10);
+                  if (customers[props]['status'] === "Served") {
+                        table.removeChild(child);
+                        rootElement.render(<App />)
+                  }
+                  if (seatsLeft + vv <= 25) {
+                        seatsLeft = seatsLeft + vv;
+                        table.removeChild(child);
+                        rootElement.render(<App />)
+                  }
+                  // console.log(document.getElementById(props))
+
+
+
+
+            }
+
+            function handleClickToCheckOut(props) {
+
+                  let vv = parseInt(customers[props]['guestCount'], 10);
+                  var today = new Date();
+                  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                  var dateTime = date + ' ' + time;
+                  let out = dateTime;
+                  //console.log(vv, seatsLeft + vv);
+                  if (seatsLeft + vv <= 25) {
+                        seatsLeft += vv;
+                        customers[props]['checkout'] = out;
+                        customers[props]['status'] = "Served";
+                        rootElement.render(<App />);
+                  }
+
+
+
+            }
+            const App = () => (
+                  <>
+                        <div className="App" style={{ textAlign: "center" }}>
+                              <div>
+                                    <h2>Total Capacity: {capacity}</h2>
+                                    <h2>Seats Left:{seatsLeft} </h2>
+                              </div>
+
+                              <form action="" className="inputForm" onSubmit={() => handlerSubmit(event)}>
+                                    <div><input type="number" min="0" max="25" placeholder="Guests Count" ref={guestCountRef} /></div>
+                                    <div><input type="text" title="Please Enter a Valid Name as Abhishek Kumar" placeholder="Primary Guest" ref={guestNameRef} pattern="^(\w\w+)\s(\w+)$" /></div>
+                                    <div><input type="tel" title="Enter a phone number starts within 6-9 and 10 digits" placeholder="Primary Guest Mob No" ref={guestMobileRef} pattern="[6-9]{1}[0-9]{9}" /></div>
+                                    <div><button>Add Entry</button></div>
+                              </form>
+
+                              <table border="1px" style={{ margin: "auto" }}>
+                                    <thead>
+                                          <tr>
+                                                <th>Count</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Check In</th>
+                                                <th>Check Out</th>
+                                                <th>Status</th>
+                                                <th>Remove Entry</th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          {customers.map((item, index) => (
+
+
+                                                <tr key={index} keyprops={index} id={index}>
+
+                                                      <td data-id={index}>{item.guestCount}</td>
+                                                      <td data-id={index}>{item.guestName}</td>
+                                                      <td data-id={index}>{item.guestMob}</td>
+                                                      <td data-id={index}>{item.checkIn}</td>
+                                                      <td data-id={index}>{item.checkout}</td>
+                                                      <td data-id={index}><p onClick={() => handleClickToCheckOut(index)}>{item.status}</p></td>
+                                                      <td data-id={index}><p onClick={() => handleDelete(index)}>Delete</p></td>
+                                                </tr>
+
+                                          ))}
+                                    </tbody>
+                              </table>
+                        </div>
+                  </>
+            );
+
+            const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+            rootElement.render(<App />);
+      </script>
+
+</body>
+
+</html>
