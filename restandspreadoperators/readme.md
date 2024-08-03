@@ -11,4 +11,7 @@ function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
   // error
 }
 </code>
-
+<!--  -->
+<h2> Spread Operator</h2>
+When ... occurs in a function call or alike, it’s called a “spread syntax” and expands an array into a list.
+The spread syntax is used to pass an array to functions that normally require a list of many arguments.

@@ -37,3 +37,26 @@ let show = () => {
 };
 show("Abhi", "Anku");
 show("Anku");
+
+function findMax(...args) {
+  return Math.max(...args);
+}
+// function not
+let s = [1, 3, 4, 5, 6, 8];
+let d = [865, 6, 7777, 7];
+console.log(findMax(1, ...s, ...d));
+
+// merging
+
+console.log(2, 3, 55, 66754, ...s, 667, ...d);
+
+let str = "Hello";
+let arrStr = [...str];
+console.log(typeof arrStr, arrStr);
+
+let dd = [...d];
+console.log(typeof dd, dd);
+console.log(JSON.stringify(d) === JSON.stringify(dd)); // true
+
+console.log(d === d); //true
+console.log(d === dd); //false
