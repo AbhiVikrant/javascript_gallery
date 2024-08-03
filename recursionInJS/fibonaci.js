@@ -48,4 +48,4 @@ function fib(n) {
   }
   return b;
 }
-console.log(fib(7));
+console.log(fib(77));
